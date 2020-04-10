@@ -47,6 +47,7 @@ def myHarrisCornerDetector(IN, K, Threshold):
     cv2.imshow('R', R)
     cv2.waitKey(0)
 
+    # Slicing to 25X25 and taking highest corner only
     slices_r = int(np.math.ceil(num_rows / slice_size))
     slices_c = int(np.math.ceil(num_cols / slice_size))
     for slicer in range(0, num_rows, slice_size):
@@ -64,6 +65,7 @@ def myHarrisCornerDetector(IN, K, Threshold):
 
 
 def createCornerPlots(I1, I1_CORNERS, I2, I2_CORNERS):
+    # general parameters
     radius = 2
     thickness = 2
     color = (0, 0, 255)
@@ -71,6 +73,8 @@ def createCornerPlots(I1, I1_CORNERS, I2, I2_CORNERS):
     I2c = cv2.transpose(I2_CORNERS)
     I1im = cv2.imread(I1)
     I2im = cv2.imread(I2)
+
+    # Adding red circles around each corner detected
     for i in range(I1c.shape[0]):
         for j in range(I1c.shape[1]):
             pixel = I1c[i, j]
@@ -83,6 +87,7 @@ def createCornerPlots(I1, I1_CORNERS, I2, I2_CORNERS):
             if pixel.all() > 0:
                 cv2.circle(I2im, (i, j), radius, color, thickness, lineType=8, shift=0)
 
+    # Displaying both images
     imstack = cv2.resize(I1im, (1000, 800))
     im2 = cv2.resize(I2im, (1000, 800))
     imstack = np.hstack((imstack, im2))
@@ -90,11 +95,12 @@ def createCornerPlots(I1, I1_CORNERS, I2, I2_CORNERS):
     cv2.waitKey(0)
 
 
-IN1 = "I1.jpg"
-IN2 = "I2.jpg"
-K = 0.05
-Threshold1 = 50
-Threshold2 = 50
+#Calling the function
+IN1 = "I1.jpg" # Image 1
+IN2 = "I2.jpg" # Image 2
+K = 0.05 # K value should be 0.04-0.06
+Threshold1 = 50     # Threshold to drop non-corner detections - image1
+Threshold2 = 50     # Threshold to drop non-corner detections - image2
 I1_CORNERS = myHarrisCornerDetector(IN1, K, Threshold1)
 I2_CORNERS = myHarrisCornerDetector(IN2, K, Threshold2)
 createCornerPlots(IN1, I1_CORNERS, IN2, I2_CORNERS)

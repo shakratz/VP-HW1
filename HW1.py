@@ -6,8 +6,8 @@ import cv2
 from ex1_Q3_functions import *
 
 # FILL IN YOUR ID
-# ID1 = 123456789
-# ID2 = 987654321
+# ID1 = 200940500
+# ID2 = 123123123
 
 ###############################################Part_3#######################################################
 
@@ -34,9 +34,9 @@ I1 = cv2.imread('I1.jpg', 0)  # Read image as grayscale
 I2 = cv2.imread('I2.jpg')
 
 # Harris Corner Detector Parameters, you may change them
-K = 0.05
-FIRST_THRESHOLD = 1e1
-SECOND_THRESHOLD = 1e6
+K = 0.005
+FIRST_THRESHOLD = 1
+SECOND_THRESHOLD = 150
 use_grid = True
 
 # CALL YOUR FUNCTION TO FIND THE CORNER PIXELS

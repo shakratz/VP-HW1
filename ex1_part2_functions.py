@@ -24,7 +24,7 @@ def Q2B(videoPath):
     fourcc = orig_video.get(6)
     fps = orig_video.get(5)
     frameSize = (int(orig_video.get(3)), int(orig_video.get(4)))
-    gray_video = cv2.VideoWriter('Vid2_Grey.avi', int(fourcc), fps, frameSize, isColor=False)
+    gray_video = cv2.VideoWriter('Vid2_Greyscale.avi', int(fourcc), fps, frameSize, isColor=False)
     while orig_video.isOpened():
         hasFrames, frame = orig_video.read()
         if hasFrames:  # hasFrames returns a bool, if frame is read correctly - it will be True
@@ -41,7 +41,7 @@ def Q2C(videoPath):
     fourcc = orig_video.get(6)
     fps = orig_video.get(5)
     frameSize = (int(orig_video.get(3)), int(orig_video.get(4)))
-    sobel_video = cv2.VideoWriter('Vid3_Sob.avi', int(fourcc), fps, frameSize, isColor=False)
+    sobel_video = cv2.VideoWriter('Vid3_Sobel.avi', int(fourcc), fps, frameSize, isColor=False)
     while orig_video.isOpened():
         hasFrames, frame = orig_video.read()
         if hasFrames:  # hasFrames returns a bool, if frame is read correctly - it will be True
